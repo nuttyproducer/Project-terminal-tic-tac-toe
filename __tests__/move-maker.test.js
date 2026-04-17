@@ -1,9 +1,9 @@
 // This test file checks the `makeMove` function from `move-maker.js`.
 // The tests help us verify that:
-// - a valid move returns true
-// - an invalid move returns false
-// - a player's symbol is placed in the correct spot on the board
-// - taken spaces or out-of-bounds moves are not allowed
+// a valid move returns true
+// an invalid move returns false
+// a player's symbol is placed in the correct spot on the board
+// taken spaces or out-of-bounds moves are not allowed
 
 import { makeMove } from '../move-maker.js';
 

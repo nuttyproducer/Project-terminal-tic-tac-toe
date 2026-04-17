@@ -1,3 +1,57 @@
+function validateMove(move, board) {
+// This splits the user input into an array of 2 variables. We can acces them with moveParts[0] and moveParts[1]
+    const moveParts = move.split(","); 
+// We check if this array we created has 2 variables. If not, we return false.
+
+if (moveParts.length !== 2) {
+    console.log("Try again...");
+    return false;
+}
+// We create two variables => 1 for the row and one for the column.
+// We asign moveparts[0] to row and moveparts[1] to column.
+const row = Number(moveParts[0]);
+const column = Number(moveParts[1]);
+// We need to make sure that both variables ar numbers with isNaN, this function does this, no need to add ! to the front of it.
+// the symbols "||" act as an OR function. So if one of these is "NotaNumber" we return false.
+
+if (isNaN(row) || isNaN(column)) {
+    console.log("Try again...");
+    return false;
+}
+// Next up we need to check if the row and column input are in the range of the gameboard.
+// Again we use || as an OR function. So if one of these conditions is true, it's out of bound and we return false.
+
+if (row < 1 || row > 3 || column < 1 || column > 3) {
+    console.log("Try again...");
+    return false;
+} 
+// The next check makes sure the move is only allowed if the space is free.
+// Here we use !== so if board row and board column is NOT "_" return false.
+// (board[row - 1][column - 1] is referring to the "let board"
+
+if (board[row - 1][column -1] !== "_") {
+    console.log("Try again...");
+    return false;
+}
+// Return the parsed values if valid
+    return { row, column };
+}
+
+
+export function makeMove(board, move, player) {
+const result = validateMove(move,  board);
+
+    // Call the validateMove function. If the move is not valid, return false.    
+if (!result) {
+        return false;
+    }
+    const {row , column} = result;
+    board[row - 1][column - 1] = player;
+    return true;
+}
+
+
+
 /*
     Given a move and a board (an array of arrays), return true if the move is valid.
         A move is represented by 2 numbers separated by a comma.
@@ -15,10 +69,6 @@
             ['O', 'O', 'X']
         ];
 */
-function validateMove(move, board) {
-    // Implement this at the end if you have time, otherwise you can help your teammates!
-    return true;
-}
 
 /*
     Given 3 parameters:
@@ -31,6 +81,3 @@ function validateMove(move, board) {
             - Update the board with the player's value ('X' or 'O') in the correct position
             - Return true
 */
-export function makeMove(board, move, player) {
-    return false;
-}
